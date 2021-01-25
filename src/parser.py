@@ -20,7 +20,7 @@ class Parser():
     def generate_add_parser(self) -> ArgumentParser:
         pass
 
-    def generate_remover_parser(self) -> ArgumentParser:
+    def generate_delete_parser(self) -> ArgumentParser:
         pass
 
     def generate_list_parser(self) -> ArgumentParser:
@@ -34,7 +34,7 @@ class Parser():
     def parse_add_args(self, args: list) -> dict:
         pass
 
-    def parse_remove_args(self, args: list) -> dict:
+    def parse_delete_args(self, args: list) -> dict:
         pass
 
     def parse_update_args(self, args: list) -> dict:

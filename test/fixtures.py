@@ -12,7 +12,7 @@ UPDATE_INPUT_CASES = [
                     ['--id', 1, '--description', 's', 'deadline', '20-10-2021-10:10', '--title', 's'],
                 ]
 
-REMOVE_INPUT_CASES = [
+DELETE_INPUT_CASES = [
 
                     ['--id', 1],
                 ]
@@ -37,7 +37,7 @@ LIST_OUTPUT_CASES = [
                     {'deadline': '2020-10-10-10:10'}
                 ]
 
-REMOVE_OUTPUT_CASES = [
+DELETE_OUTPUT_CASES = [
 
                     {'id': 1}
                 ]
