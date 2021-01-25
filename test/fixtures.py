@@ -25,8 +25,8 @@ LIST_INPUT_CASES = [
 
 ADD_OUTPUT_CASES = [
 
-                    {'title': 's', 'description': None, 'deadline': 'Null'},
-                    {'title': 's', 'description': 's', 'deadline': 'Null'},
+                    {'title': 's', 'description': None, 'deadline': None},
+                    {'title': 's', 'description': 's', 'deadline': None},
                     {'title': 's', 'description': 's', 'deadline':  "'2021-10-20 10:10:00'"}
 
                 ]
