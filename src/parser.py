@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from src.request import Request
 
+
 class Parser():
 
     """
@@ -13,7 +14,15 @@ class Parser():
     """
 
     def __init__(self):
-        pass
+        self.parser = ArgumentParser()
+        self.subparser = self.parser.add_subparsers(dest='command')
+
+        self.dict_generators = {
+            'add': self.parse_add_args,
+            'remove': self.parse_update_args,
+            'update': self.parse_list_args,
+            'list': self.parse_remove_args
+        }
 
     # GENERATOR METHODS, WHICH CONFIGURE AND RETURN REQUIRED PARSERS - ADD/REMOVE/LIST/UPDATE
 
@@ -46,6 +55,16 @@ class Parser():
     # GENERAL PARSING METHOD
 
     def parse_args(self, sys_args: list) -> Request:
-        pass
+        command = sys_args[0]
+        options = sys_args[1:]
+
+        args = vars(self.dict_generators[command](options))
+
+        print(args)
+
+        request_constructor = globals()[command]
+        request = request_constructor(args)
+
+        return request
 
 
