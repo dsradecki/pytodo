@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 from src.request import Request
-
+from src.utils import valid_datetime
 
 class Parser():
 
@@ -39,7 +39,7 @@ class Parser():
                                 type=str)
         add_parser.add_argument('--deadline',
                                 metavar='deadline',
-                                type=valid_date)
+                                type=valid_datetime)
 
         return add_parser
 
