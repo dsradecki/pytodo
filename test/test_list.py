@@ -18,7 +18,7 @@ class TestList(MockDB):
             self.assertEqual(self.parser.parse_list_args(input_case), output_case)
 
     def test_list_request(self):
-        for input_case, output_case in LIST_INPUT_CASES:
+        for input_case in LIST_INPUT_CASES:
             with self.mock_db_config:
                 list_request = List(input_case)
                 self.assertEqual(list_request.perform_query(), True)

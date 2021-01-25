@@ -1,5 +1,6 @@
 from src.database import get_db_connection, get_cursor
 from settings import HOST, USER, PASSWORD, DB
+import mysql
 
 config = {
     'host': HOST,

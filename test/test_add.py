@@ -18,7 +18,7 @@ class TestAdd(MockDB):
             self.assertEqual(self.parser.parse_add_args(input_case), output_case)
 
     def test_add_request(self):
-        for input_case, output_case in ADD_OUTPUT_CASES:
+        for input_case in ADD_OUTPUT_CASES:
             with self.mock_db_config:
                 add_request = Add(input_case)
                 self.assertEqual(add_request.perform_query(), True)

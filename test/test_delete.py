@@ -15,7 +15,7 @@ class TestDelete(MockDB):
 
     def test_parse_remove_args(self):
         for input_case, output_case in zip(DELETE_INPUT_CASES, DELETE_OUTPUT_CASES):
-            self.assertEqual(self.parser.parse_remove_args(input_case), output_case)
+            self.assertEqual(self.parser.parse_delete_args(input_case), output_case)
 
     def test_delete_request(self):
         for input_case, output_case in DELETE_INPUT_CASES:
