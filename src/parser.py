@@ -80,8 +80,6 @@ class Parser():
 
         args = self.dict_generators[command](options)
 
-        print(args)
-
         request_constructor = globals()[command]
         request = request_constructor(args)
 

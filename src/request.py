@@ -1,4 +1,4 @@
-from src.utils import perform_query
+from src.utils import write_to_db, read_from_db, generate_hash
 
 
 class Request():
@@ -9,11 +9,13 @@ class Request():
 class Add(Request):
     def __init__(self, body: dict):
         super().__init__(body)
+        self.body['id'] = generate_hash(body['title'])
 
     def perform_query(self) -> bool:
         def generate_query():
-            return "INSERT INTO tasks VALUES ({}) ".format(",".join(self.body.values()))
-        return perform_query(generate_query())
+            return "INSERT INTO tasks VALUES ({}) ".format(", ".join(self.body.values()))
+        print(generate_query())
+        return write_to_db(generate_query())
 
 
 class Delete(Request):

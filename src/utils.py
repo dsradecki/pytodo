@@ -13,7 +13,7 @@ config = {
 }
 
 
-def write_to_db(query: str):
+def write_to_db(query: str) -> bool:
 
     connection = get_db_connection()
     cursor = get_cursor(connection)
@@ -22,6 +22,7 @@ def write_to_db(query: str):
         cursor.execute(query)
 
     except (Exception, mysql.connector.Error) as e:
+        print(e)
         return False
 
     connection.commit()
@@ -30,7 +31,7 @@ def write_to_db(query: str):
     return True
 
 
-def read_from_db(query: str):
+def read_from_db(query: str) -> bool:
 
     connection = get_db_connection()
     cursor = get_cursor(connection)
@@ -70,3 +71,7 @@ def valid_datetime(s: str):
               + "The date's valid format is 'DD-MM-YYYY-H:M'"
 
         raise ArgumentTypeError(msg)
+
+
+def generate_hash(string: str) -> str:
+    return '1'

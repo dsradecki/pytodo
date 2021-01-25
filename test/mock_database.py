@@ -46,7 +46,7 @@ class MockDB(TestCase):
 	                id int(20) NOT NULL PRIMARY KEY,
                     task varchar(255) NOT NULL,
                     description varchar(255) NOT NULL,
-                    deadline DATE
+                    deadline DATETIME
                 )"""
         try:
             cursor.execute(query)
