@@ -12,9 +12,8 @@ class Add(Request):
 
     def perform_query(self) -> bool:
         def generate_query():
-            #change body (dictionary) to a particurlar SQL string here
-            pass
-        #return perform_query(SQL_query)
+            return "INSERT INTO tasks VALUES ({}) ".format(",".join(self.body.values()))
+        return perform_query(generate_query())
 
 
 class Delete(Request):
