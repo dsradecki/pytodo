@@ -13,7 +13,7 @@ config = {
 }
 
 
-def perform_query(query: str):
+def write_to_db(query: str):
 
     connection = get_db_connection()
     cursor = get_cursor(connection)
@@ -22,15 +22,34 @@ def perform_query(query: str):
         cursor.execute(query)
 
     except (Exception, mysql.connector.Error) as e:
-        return False, str(e)
+        return False
 
     connection.commit()
     connection.close()
 
-    return True, cursor.fetchone()
+    return True
 
 
-def valid_datetime(s):
+def read_from_db(query: str):
+
+    connection = get_db_connection()
+    cursor = get_cursor(connection)
+
+    cursor.execute(query)
+
+    entries = cursor.fetchall()
+    cursor.close()
+    connection.close()
+
+    content = []
+
+    for entry in entries:
+        content.append(entry)
+
+    return content
+
+
+def valid_datetime(s: str):
     """
 
     Check whether the input string has DD-MM-YYYY-H:M format
