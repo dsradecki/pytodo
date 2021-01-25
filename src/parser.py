@@ -1,4 +1,4 @@
-import argparse
+from argparse import ArgumentParser
 
 
 class Parser():
@@ -17,16 +17,16 @@ class Parser():
 
     # GENERATOR METHODS, WHICH CONFIGURE AND RETURN REQUIRED PARSERS - ADD/REMOVE/LIST/UPDATE
 
-    def generate_add_parser(self) -> argparse.subparser:
+    def generate_add_parser(self) -> ArgumentParser:
         pass
 
-    def generate_remover_parser(self) -> argparse.subparser:
+    def generate_remover_parser(self) -> ArgumentParser:
         pass
 
-    def generate_list_parser(self) -> argparse.subparser:
+    def generate_list_parser(self) -> ArgumentParser:
         pass
 
-    def generate_update_parser(self) -> argparse.subparser:
+    def generate_update_parser(self) -> ArgumentParser:
         pass
 
     # PARSING METHODS WHICH EMPLOY THE GENERATORS AND PARSE ARGS
