@@ -1,5 +1,5 @@
 import unittest
-from parser import Parser
+from src.parser import Parser
 from fixtures import ADD_INPUT_CASES, ADD_OUTPUT_CASES, REMOVE_INPUT_CASES, REMOVE_OUTPUT_CASES, \
                         LIST_INPUT_CASES, LIST_OUTPUT_CASES, UPDATE_INPUT_CASES, UPDATE_OUTPUT_CASES
 
