@@ -56,7 +56,7 @@ class Parser():
 
     def parse_add_args(self, args: list) -> dict:
         add_parser = self.generate_add_parser()
-        return add_parser.parse_args(args)
+        return vars(add_parser.parse_args(args))
 
     def parse_delete_args(self, args: list) -> dict:
         pass
@@ -73,7 +73,7 @@ class Parser():
         command = sys_args[0]
         options = sys_args[1:]
 
-        args = vars(self.dict_generators[command](options))
+        args = self.dict_generators[command](options)
 
         print(args)
 
