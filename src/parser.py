@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from request import Request
+from src.request import Request
 
 class Parser():
 

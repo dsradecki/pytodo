@@ -1,7 +1,7 @@
 import unittest
-from parser import Parser
-from fixtures import ADD_INPUT_CASES, ADD_OUTPUT_CASES
-from requests import Add
+from src.parser import Parser
+from test.fixtures import ADD_INPUT_CASES, ADD_OUTPUT_CASES
+from src.request import Add
 
 from test.mock_database import MockDB
 from mock import patch

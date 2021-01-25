@@ -1,3 +1,6 @@
+from src.utils import perform_query
+
+
 class Request():
     def __init__(self, body: dict):
         self.body = body
@@ -11,7 +14,7 @@ class Add(Request):
         def generate_query():
             #change body (dictionary) to a particurlar SQL string here
             pass
-        #database.perform_query(SQL_query)
+        #return perform_query(SQL_query)
 
 
 class Delete(Request):
@@ -22,7 +25,7 @@ class Delete(Request):
         def generate_query():
             #change body (dictionary) to a particurlar SQL string here
             pass
-        #return database.perform_query(SQL_query)
+        #return perform_query(SQL_query)
 
 
 class List(Request):
@@ -33,7 +36,7 @@ class List(Request):
         def generate_query():
             #change body (dictionary) to a particurlar SQL string here
             pass
-        #return database.perform_query(SQL_query)
+        #return perform_query(SQL_query)
 
 
 class Update(Request):
@@ -44,4 +47,4 @@ class Update(Request):
         def generate_query():
             #change body (dictionary) to a particurlar SQL string here
             pass
-        #return database.perform_query(SQL_query)
+        #return perform_query(SQL_query)
