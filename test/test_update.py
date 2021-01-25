@@ -3,8 +3,11 @@ from src.parser import Parser
 from test.fixtures import UPDATE_OUTPUT_CASES, UPDATE_INPUT_CASES
 from src.request import Update
 
+from test.mock_database import MockDB
+from mock import patch
 
-class TestList(unittest.TestCase):
+
+class TestList(MockDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,8 +19,9 @@ class TestList(unittest.TestCase):
 
     def test_update_request(self):
         for input_case, output_case in UPDATE_INPUT_CASES:
-            update_request = Update(input_case)
-            self.assertEqual(update_request.perform_query(), True)
+            with self.mock_db_config:
+                update_request = Update(input_case)
+                self.assertEqual(update_request.perform_query(), True)
 
 
 if __name__ == '__main__':

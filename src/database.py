@@ -14,8 +14,8 @@ def get_cursor(db_conn):
 def get_db_connection():
     try:
         return mysql.connector.connect(host=HOST,
-                                       user=USERNAME,
-                                       password=DB_PASSWORD,
+                                       user=USER,
+                                       password=PASSWORD,
                                        buffered=True,
                                        database=DB)
 

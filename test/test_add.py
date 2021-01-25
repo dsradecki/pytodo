@@ -3,8 +3,11 @@ from src.parser import Parser
 from fixtures import ADD_INPUT_CASES, ADD_OUTPUT_CASES
 from requests import Add
 
+from test.mock_database import MockDB
+from mock import patch
 
-class TestAdd(unittest.TestCase):
+
+class TestAdd(MockDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,8 +19,9 @@ class TestAdd(unittest.TestCase):
 
     def test_add_request(self):
         for input_case, output_case in ADD_OUTPUT_CASES:
-            add_request = Add(input_case)
-            self.assertEqual(add_request.perform_query(), True)
+            with self.mock_db_config:
+                add_request = Add(input_case)
+                self.assertEqual(add_request.perform_query(), True)
 
 
 if __name__ == '__main__':

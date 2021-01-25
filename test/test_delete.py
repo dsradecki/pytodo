@@ -3,8 +3,11 @@ from src.parser import Parser
 from fixtures import DELETE_INPUT_CASES, DELETE_OUTPUT_CASES
 from requests import Delete
 
+from test.mock_database import MockDB
+from mock import patch
 
-class TestDelete(unittest.TestCase, ):
+
+class TestDelete(MockDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,10 +17,11 @@ class TestDelete(unittest.TestCase, ):
         for input_case, output_case in zip(DELETE_INPUT_CASES, DELETE_OUTPUT_CASES):
             self.assertEqual(self.parser.parse_remove_args(input_case), output_case)
 
-    def test_add_request(self):
+    def test_delete_request(self):
         for input_case, output_case in DELETE_INPUT_CASES:
-            delete_request = Delete(input_case)
-            self.assertEqual(delete_request.perform_query(), True)
+            with self.mock_db_config:
+                delete_request = Delete(input_case)
+                self.assertEqual(delete_request.perform_query(), True)
 
 
 if __name__ == '__main__':
