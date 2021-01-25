@@ -1,7 +1,7 @@
 import unittest
 from src.parser import Parser
-from fixtures import DELETE_INPUT_CASES, DELETE_OUTPUT_CASES
-from requests import Delete
+from test.fixtures import DELETE_INPUT_CASES, DELETE_OUTPUT_CASES
+from src.request import Delete
 
 from test.mock_database import MockDB
 from mock import patch
