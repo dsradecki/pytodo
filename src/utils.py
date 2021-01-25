@@ -39,6 +39,11 @@ def valid_datetime(s):
     :param s: string to be checked
     :return: checked string
     """
+
+    #Null is also a correct date since the user might prompt to enter task without a date provided
+    if s == 'Null':
+        return s
+
     try:
         return "'%s'" % datetime.strptime('%s' % s, "%d-%m-%Y-%H:%M")
     except ValueError:

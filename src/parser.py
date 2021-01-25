@@ -28,18 +28,23 @@ class Parser():
 
     def generate_add_parser(self) -> ArgumentParser:
         add_parser = self.subparser.add_parser('add',
-                                               help='Add a new task',
-                                               description='dupa')
+                                               help='Add a new task'
+                                               )
         add_parser.add_argument('--title',
                                 metavar='title',
                                 required=True,
-                                type=str)
+                                type=str,
+                                )
         add_parser.add_argument('--description',
                                 metavar='description',
-                                type=str)
+                                type=str,
+                                default='Null'
+                                )
         add_parser.add_argument('--deadline',
                                 metavar='deadline',
-                                type=valid_datetime)
+                                type=valid_datetime,
+                                default='Null'
+                                )
 
         return add_parser
 
