@@ -1,4 +1,12 @@
 from src.database import get_db_connection, get_cursor
+from settings import HOST, USER, PASSWORD, DB
+
+config = {
+    'host': HOST,
+    'user': USER,
+    'password': PASSWORD,
+    'database': DB
+}
 
 
 def perform_query(query: str):

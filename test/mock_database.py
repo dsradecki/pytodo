@@ -19,7 +19,9 @@ class MockDB(TestCase):
             host=MYSQL_HOST,
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
-            port=MYSQL_PORT
+            port=MYSQL_PORT,
+            buffered=True,
+            auth_plugin='mysql_native_password'
         )
         cursor = cnx.cursor(dictionary=True)
 
