@@ -4,7 +4,7 @@ from fixtures import DELETE_INPUT_CASES, DELETE_OUTPUT_CASES
 from requests import Delete
 
 
-class TestDelete(unittest.TestCase):
+class TestDelete(unittest.TestCase, ):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

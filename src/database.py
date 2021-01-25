@@ -1,13 +1,9 @@
 import mysql.connector
-
-USERNAME = "root"
-HOST = "localhost"
-DB_PASSWORD = "root"
-DB = 'todoapp'
+from settings import USER, PASSWORD, DB, HOST
 
 
-def perform_query(query: str):
-    connection = get_db_conn()
+def perform_query(query: str, connection):
+
     cursor = get_cursor(connection)
 
     try:
