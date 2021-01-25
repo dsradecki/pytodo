@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from src.request import Request
+from src.request import Request, Add, Delete, Update, List
 from src.utils import valid_datetime
 
 class Parser():
@@ -80,7 +80,7 @@ class Parser():
 
         args = self.dict_generators[command](options)
 
-        request_constructor = globals()[command]
+        request_constructor = globals()[command.capitalize()]
         request = request_constructor(args)
 
         return request

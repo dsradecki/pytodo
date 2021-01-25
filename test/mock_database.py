@@ -7,23 +7,21 @@ import src.utils
 MYSQL_USER = "root"
 MYSQL_PASSWORD = "root"
 MYSQL_DB = "testdb"
-MYSQL_HOST = "localhost"
-MYSQL_PORT = "3306"
+MYSQL_HOST = "127.0.0.1"
 
 
 class MockDB(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cnx = mysql.connector.connect(
+        connection = mysql.connector.connect(
             host=MYSQL_HOST,
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
-            port=MYSQL_PORT,
             buffered=True,
             auth_plugin='mysql_native_password'
         )
-        cursor = cnx.cursor(dictionary=True)
+        cursor = connection.cursor(dictionary=True)
 
         # drop database if it already exists
         try:
@@ -33,14 +31,14 @@ class MockDB(TestCase):
         except mysql.connector.Error as err:
             print("{}{}".format(MYSQL_DB, err))
 
-        cursor = cnx.cursor(dictionary=True)
+        cursor = connection.cursor(dictionary=True)
         try:
             cursor.execute(
                 "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(MYSQL_DB))
         except mysql.connector.Error as err:
             print("Failed creating database: {}".format(err))
             exit(1)
-        cnx.database = MYSQL_DB
+        connection.database = MYSQL_DB
 
         query = """CREATE TABLE tasks( 
 	                id int(20) NOT NULL PRIMARY KEY,
@@ -50,7 +48,7 @@ class MockDB(TestCase):
                 )"""
         try:
             cursor.execute(query)
-            cnx.commit()
+            connection.commit()
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                 print("test_table already exists.")
@@ -59,7 +57,7 @@ class MockDB(TestCase):
 
 
         cursor.close()
-        cnx.close()
+        connection.close()
 
         testconfig = {
             'host': MYSQL_HOST,
