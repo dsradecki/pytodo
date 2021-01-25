@@ -2,7 +2,7 @@ from unittest import TestCase
 import mysql.connector
 from mysql.connector import errorcode
 from mock import patch
-import utils
+import src.utils
 
 MYSQL_USER = "root"
 MYSQL_PASSWORD = "root"
@@ -54,8 +54,7 @@ class MockDB(TestCase):
                 print("test_table already exists.")
             else:
                 print(err.msg)
-        else:
-            print("OK")
+
 
         cursor.close()
         cnx.close()
@@ -66,7 +65,7 @@ class MockDB(TestCase):
             'password': MYSQL_PASSWORD,
             'database': MYSQL_DB
         }
-        cls.mock_db_config = patch.dict(utils.config, testconfig)
+        cls.mock_db_config = patch.dict(src.utils.config, testconfig)
 
     @classmethod
     def tearDownClass(cls):
