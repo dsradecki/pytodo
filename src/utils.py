@@ -15,7 +15,7 @@ config = {
 
 def write_to_db(query: str, values) -> bool:
 
-    connection = get_db_connection()
+    connection = get_db_connection(config)
     cursor = get_cursor(connection)
 
     #print("affected rows = {}".format(cursor.rowcount)) - use this to check
@@ -35,7 +35,7 @@ def write_to_db(query: str, values) -> bool:
 
 def read_from_db(query: str) -> bool:
 
-    connection = get_db_connection()
+    connection = get_db_connection(config)
     cursor = get_cursor(connection)
 
     cursor.execute(query)

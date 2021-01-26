@@ -1,5 +1,4 @@
 import mysql.connector
-from settings import USER, PASSWORD, DB, HOST
 
 
 def get_cursor(db_conn):
@@ -11,13 +10,9 @@ def get_cursor(db_conn):
         return False
 
 
-def get_db_connection():
+def get_db_connection(config):
     try:
-        return mysql.connector.connect(host=HOST,
-                                       user=USER,
-                                       password=PASSWORD,
-                                       buffered=True,
-                                       database=DB)
+        return mysql.connector.connect(**config)
 
     except (Exception, mysql.connector.Error) as e:
         print(str(e))
