@@ -2,7 +2,7 @@ import unittest
 
 from src.parser import Parser
 from test.fixtures.parser import ADD_INPUT_CASES, ADD_OUTPUT_CASES, DELETE_INPUT_CASES, DELETE_OUTPUT_CASES, \
-                                 LIST_INPUT_CASES, LIST_OUTPUT_CASES, UPDATE_INPUT_CASES, UPDATE_OUTPUT_CASES
+    LIST_INPUT_CASES, LIST_OUTPUT_CASES, UPDATE_INPUT_CASES, UPDATE_OUTPUT_CASES
 
 
 class TestParser(unittest.TestCase):
