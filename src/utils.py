@@ -84,4 +84,12 @@ def generate_hash(string: str) -> str:
 def generate_insert_query(dictionary: dict, table):
     placeholders = ', '.join(['%s'] * len(dictionary))
     columns = ', '.join(dictionary.keys())
+
     return "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
+
+
+
+
+def generate_remove_query():
+    return '1'
+
