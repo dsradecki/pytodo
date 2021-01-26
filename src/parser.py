@@ -7,7 +7,6 @@ class Parser():
 
     """
         Parser based on argparse with the following functionalities:
-
             - add --name STRING [--deadline DATETIME] [--description STRING]
             - remove --id
             - list [--deadline DATE]
@@ -85,5 +84,3 @@ class Parser():
         request = request_constructor(args)
 
         return request
-
-

@@ -2,6 +2,8 @@ import mysql
 from src.database import get_db_connection, get_cursor
 from settings import HOST, USER, PASSWORD, DB
 
+from hashlib import md5
+
 from argparse import ArgumentTypeError
 from datetime import datetime
 
@@ -19,7 +21,7 @@ def write_to_db(query: str, values) -> bool:
     cursor = get_cursor(connection)
 
     #print("affected rows = {}".format(cursor.rowcount)) - use this to check
-
+    print(query)
     try:
         cursor.execute(query, values)
 
@@ -67,7 +69,7 @@ def valid_datetime(s: str):
         return s
 
     try:
-        return "'%s'" % datetime.strptime('%s' % s, "%d-%m-%Y-%H:%M")
+        return "%s" % datetime.strptime(s, "%d-%m-%Y-%H:%M")
     except ValueError:
         msg = "Not a valid date: '{0}'.".format(s) \
               + "The date's valid format is 'DD-MM-YYYY-H:M'"
@@ -76,7 +78,7 @@ def valid_datetime(s: str):
 
 
 def generate_hash(string: str) -> str:
-    return '1'
+    return md5(string.encode('utf-8')).hexdigest()
 
 
 def generate_insert_query(dictionary: dict):
