@@ -1,4 +1,4 @@
-from src.utils import write_to_db, read_from_db, generate_hash
+from src.utils import write_to_db, read_from_db, generate_hash, generate_insert_query
 
 
 class Request():
@@ -9,13 +9,12 @@ class Request():
 class Add(Request):
     def __init__(self, body: dict):
         super().__init__(body)
-        self.body['id'] = generate_hash(body['title'])
+        #ADD HASH - it has to be at first position and dictionaries are unordered...
+        self.body = {'id': generate_hash(self.body['task']), **self.body}
 
     def perform_query(self) -> bool:
-        def generate_query():
-            return "INSERT INTO tasks VALUES ({}) ".format(", ".join(self.body.values()))
-        print(generate_query())
-        return write_to_db(generate_query())
+        query = generate_insert_query(self.body)
+        return write_to_db(query, list(self.body.values()))
 
 
 class Delete(Request):

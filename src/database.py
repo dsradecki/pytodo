@@ -13,7 +13,6 @@ def get_cursor(db_conn):
 
 def get_db_connection():
     try:
-        print(PASSWORD)
         return mysql.connector.connect(host=HOST,
                                        user=USER,
                                        password=PASSWORD,

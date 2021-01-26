@@ -13,13 +13,15 @@ config = {
 }
 
 
-def write_to_db(query: str) -> bool:
+def write_to_db(query: str, values) -> bool:
 
     connection = get_db_connection()
     cursor = get_cursor(connection)
 
+    #print("affected rows = {}".format(cursor.rowcount)) - use this to check
+
     try:
-        cursor.execute(query)
+        cursor.execute(query, values)
 
     except (Exception, mysql.connector.Error) as e:
         print(e)
@@ -75,3 +77,9 @@ def valid_datetime(s: str):
 
 def generate_hash(string: str) -> str:
     return '1'
+
+
+def generate_insert_query(dictionary: dict):
+    placeholders = ', '.join(['%s'] * len(dictionary))
+    columns = ', '.join(dictionary.keys())
+    return "INSERT INTO %s ( %s ) VALUES ( %s )" % ('tasks', columns, placeholders)
