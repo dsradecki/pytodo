@@ -1,10 +1,10 @@
-PARSE_ADD_INPUT_CASES = [
+ADD_INPUT_CASES = [
                     ['--task', 's'],
                     ['--task', 's', '--description', 's'],
                     ['--task', 's', '--description', 's', '--deadline', '20-10-2021-10:10'],
                 ]
 
-PARSE_ADD_OUTPUT_CASES = [
+ADD_OUTPUT_CASES = [
 
                     {'task': 's', 'description': None, 'deadline': None},
                     {'task': 's', 'description': 's', 'deadline': None},
@@ -12,17 +12,10 @@ PARSE_ADD_OUTPUT_CASES = [
 
                 ]
 
-QUERY_ADD_INPUT_CASES = [
-
-                    {'id': '1', 'task': 's', 'description': None, 'deadline': None},
-                    {'id': '1', 'task': 's', 'description': 's', 'deadline': None},
-                    {'id': '1', 'task': 's', 'description': 's', 'deadline':  "'2021-10-20 10:10:00'"}
-
-                ]
 
 UPDATE_INPUT_CASES = [
 
-                    ['--id', 1],
+                    ['--ida', 1],
                     ['--id', 1, '--description', 's'],
                     ['--id', 1, '--description', 's', 'deadline', '20-10-2021-10:10'],
                     ['--id', 1, '--description', 's', 'deadline', '20-10-2021-10:10', '--task', 's'],

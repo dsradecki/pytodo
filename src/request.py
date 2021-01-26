@@ -10,7 +10,6 @@ class Add(Request):
     def __init__(self, body: dict):
         super().__init__(body)
         #ADD HASH - it has to be at first position and dictionaries are unordered...
-        #REFACTOR THIS TO TWO ARGUMENTS BODY AND HASH...
         self.body = {'id': generate_hash(self.body['task']), **self.body}
 
     def perform_query(self) -> bool:
