@@ -13,7 +13,6 @@ class TestAdd(MockDB):
             for add_input, output in ADD_INPUT_CASES:
                 with self.subTest(query=add_input):
                     add_request = Add(add_input, 'tasks')
-
                     self.assertEqual(add_request.perform_query(), output)
 
     def test_delete_request(self):

@@ -17,4 +17,3 @@ def get_db_connection(config):
     except (Exception, mysql.connector.Error) as e:
         print(str(e))
         return False
-

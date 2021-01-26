@@ -1,4 +1,5 @@
-from src.utils import write_to_db, read_from_db, generate_hash, generate_insert_query
+from src.utils import write_to_db, read_from_db, generate_hash, generate_insert_query, \
+                      generate_delete_query
 
 
 class Request():
@@ -24,10 +25,8 @@ class Delete(Request):
         super().__init__(body, table)
 
     def perform_query(self) -> bool:
-        def generate_query():
-            #change body (dictionary) to a particurlar SQL string here
-            pass
-        #return perform_query(SQL_query)
+        query = generate_delete_query('id', self.table) #ID fixed for now, change that to make code more modular
+        return write_to_db(query, list(self.body.values()))
 
 
 class List(Request):
