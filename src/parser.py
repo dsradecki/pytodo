@@ -7,7 +7,6 @@ class Parser():
 
     """
         Parser based on argparse with the following functionalities:
-
             - add --name STRING [--deadline DATETIME] [--description STRING]
             - remove --id
             - list [--deadline DATE]
@@ -75,15 +74,13 @@ class Parser():
 
     # GENERAL PARSING METHOD
 
-    def parse_args(self, sys_args: list) -> Request:
+    def parse_args(self, sys_args: list, table) -> Request:
         command = sys_args[0]
         options = sys_args[1:]
 
         args = self.dict_generators[command](options)
 
         request_constructor = globals()[command.capitalize()]
-        request = request_constructor(args)
+        request = request_constructor(args, table)
 
         return request
-
-

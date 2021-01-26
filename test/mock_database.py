@@ -42,8 +42,8 @@ class MockDB(TestCase):
 
         query = """CREATE TABLE tasks( 
 	                id int(20) NOT NULL PRIMARY KEY,
-                    task varchar(255) NOT NULL,
-                    description varchar(255) NOT NULL,
+                    task varchar(255),
+                    description varchar(255),
                     deadline DATETIME
                 )"""
         try:
@@ -54,6 +54,17 @@ class MockDB(TestCase):
                 print("test_table already exists.")
             else:
                 print(err.msg)
+
+        insert_data_query = """INSERT INTO tasks VALUES                               
+                                    ('100', 's', Null, Null),
+                                    ('200', 's', 's', Null),
+                                    ('300', 's', 's', Null)"""
+
+        try:
+            cursor.execute(insert_data_query)
+            connection.commit()
+        except mysql.connector.Error as err:
+            print("Data insertion to test_table failed \n" + err.msg)
 
 
         cursor.close()

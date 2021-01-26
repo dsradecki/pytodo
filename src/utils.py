@@ -2,6 +2,8 @@ import mysql
 from src.database import get_db_connection, get_cursor
 from settings import HOST, USER, PASSWORD, DB
 
+from hashlib import md5
+
 from argparse import ArgumentTypeError
 from datetime import datetime
 
@@ -15,10 +17,10 @@ config = {
 
 def write_to_db(query: str, values) -> bool:
 
-    connection = get_db_connection()
+    connection = get_db_connection(config)
     cursor = get_cursor(connection)
 
-    #print("affected rows = {}".format(cursor.rowcount)) - use this to check
+    #print("affected rows = {}".format(cursor.rowcount)) - use this to check 'ACKNOWLEDGMENT'
 
     try:
         cursor.execute(query, values)
@@ -35,7 +37,7 @@ def write_to_db(query: str, values) -> bool:
 
 def read_from_db(query: str) -> bool:
 
-    connection = get_db_connection()
+    connection = get_db_connection(config)
     cursor = get_cursor(connection)
 
     cursor.execute(query)
@@ -67,7 +69,7 @@ def valid_datetime(s: str):
         return s
 
     try:
-        return "'%s'" % datetime.strptime('%s' % s, "%d-%m-%Y-%H:%M")
+        return "%s" % datetime.strptime(s, "%d-%m-%Y-%H:%M")
     except ValueError:
         msg = "Not a valid date: '{0}'.".format(s) \
               + "The date's valid format is 'DD-MM-YYYY-H:M'"
@@ -76,14 +78,18 @@ def valid_datetime(s: str):
 
 
 def generate_hash(string: str) -> str:
-    return '1'
+    return md5(string.encode('utf-8')).hexdigest()
 
 
-def generate_insert_query(dictionary: dict):
+def generate_insert_query(dictionary: dict, table):
     placeholders = ', '.join(['%s'] * len(dictionary))
     columns = ', '.join(dictionary.keys())
-    return "INSERT INTO %s ( %s ) VALUES ( %s )" % ('tasks', columns, placeholders)
+
+    return "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
+
+
 
 
 def generate_remove_query():
     return '1'
+
