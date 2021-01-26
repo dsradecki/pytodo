@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
-from src.request import Request
-
+from src.request import Request, Add, Delete, Update, List
+from src.utils import valid_datetime
 
 class Parser():
 
@@ -21,13 +21,32 @@ class Parser():
             'add': self.parse_add_args,
             'remove': self.parse_update_args,
             'update': self.parse_list_args,
-            'list': self.parse_remove_args
+            'list': self.parse_delete_args
         }
 
     # GENERATOR METHODS, WHICH CONFIGURE AND RETURN REQUIRED PARSERS - ADD/REMOVE/LIST/UPDATE
 
     def generate_add_parser(self) -> ArgumentParser:
-        pass
+        add_parser = self.subparser.add_parser('add',
+                                               help='Add a new task'
+                                               )
+        add_parser.add_argument('--task',
+                                metavar='title',
+                                required=True,
+                                type=str,
+                                )
+        add_parser.add_argument('--description',
+                                metavar='description',
+                                type=str,
+                                default=None
+                                )
+        add_parser.add_argument('--deadline',
+                                metavar='deadline',
+                                type=valid_datetime,
+                                default=None
+                                )
+
+        return add_parser
 
     def generate_delete_parser(self) -> ArgumentParser:
         pass
@@ -41,7 +60,8 @@ class Parser():
     # PARSING METHODS WHICH EMPLOY THE GENERATORS AND PARSE ARGS
 
     def parse_add_args(self, args: list) -> dict:
-        pass
+        add_parser = self.generate_add_parser()
+        return vars(add_parser.parse_args(args))
 
     def parse_delete_args(self, args: list) -> dict:
         pass
@@ -58,11 +78,9 @@ class Parser():
         command = sys_args[0]
         options = sys_args[1:]
 
-        args = vars(self.dict_generators[command](options))
+        args = self.dict_generators[command](options)
 
-        print(args)
-
-        request_constructor = globals()[command]
+        request_constructor = globals()[command.capitalize()]
         request = request_constructor(args)
 
         return request

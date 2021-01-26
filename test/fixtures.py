@@ -1,7 +1,23 @@
-ADD_INPUT_CASES = [
-                    ['--title', 's'],
-                    ['--title', 's', '--description', 's'],
-                    ['--title', 's', '--description', 's', '--deadline', '20-10-2021-10:10'],
+PARSE_ADD_INPUT_CASES = [
+                    ['--task', 's'],
+                    ['--task', 's', '--description', 's'],
+                    ['--task', 's', '--description', 's', '--deadline', '20-10-2021-10:10'],
+                ]
+
+PARSE_ADD_OUTPUT_CASES = [
+
+                    {'task': 's', 'description': None, 'deadline': None},
+                    {'task': 's', 'description': 's', 'deadline': None},
+                    {'task': 's', 'description': 's', 'deadline':  "'2021-10-20 10:10:00'"}
+
+                ]
+
+QUERY_ADD_INPUT_CASES = [
+
+                    {'id': '1', 'task': 's', 'description': None, 'deadline': None},
+                    {'id': '1', 'task': 's', 'description': 's', 'deadline': None},
+                    {'id': '1', 'task': 's', 'description': 's', 'deadline':  "'2021-10-20 10:10:00'"}
+
                 ]
 
 UPDATE_INPUT_CASES = [
@@ -9,7 +25,7 @@ UPDATE_INPUT_CASES = [
                     ['--id', 1],
                     ['--id', 1, '--description', 's'],
                     ['--id', 1, '--description', 's', 'deadline', '20-10-2021-10:10'],
-                    ['--id', 1, '--description', 's', 'deadline', '20-10-2021-10:10', '--title', 's'],
+                    ['--id', 1, '--description', 's', 'deadline', '20-10-2021-10:10', '--task', 's'],
                 ]
 
 DELETE_INPUT_CASES = [
@@ -21,14 +37,6 @@ LIST_INPUT_CASES = [
 
                     [],
                     ['--deadline', '2020-10-10-10:10'],
-                ]
-
-ADD_OUTPUT_CASES = [
-
-                    {'title': 's', 'description': None, 'deadline': 'Null'},
-                    {'title': 's', 'description': 's', 'deadline': 'Null'},
-                    {'title': 's', 'description': 's', 'deadline':  "'2021-10-20 10:10:00'"}
-
                 ]
 
 LIST_OUTPUT_CASES = [
