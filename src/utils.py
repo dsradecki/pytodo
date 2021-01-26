@@ -88,4 +88,5 @@ def generate_insert_query(dictionary: dict, table: str):
 
 
 def generate_delete_query(var: str, table: str):
-    return "DELETE FROM %s WHERE %s=%s" % (table, var)
+    placeholder = '%s'
+    return "DELETE FROM %s WHERE %s=%s" % (table, var, placeholder)

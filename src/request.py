@@ -25,7 +25,7 @@ class Delete(Request):
         super().__init__(body, table)
 
     def perform_query(self) -> bool:
-        query = generate_delete_query(self.body['id'], self.table) #ID fixed for now, change that to make code more modular
+        query = generate_delete_query('id', self.table) #ID fixed for now, change that to make code more modular
         return write_to_db(query, list(self.body.values()))
 
 
