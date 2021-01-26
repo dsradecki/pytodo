@@ -1,5 +1,5 @@
 from src.utils import write_to_db, read_from_db, generate_hash, generate_insert_query, \
-                      generate_delete_query
+                      generate_delete_query, generate_select_query
 
 
 class Request():
@@ -34,10 +34,9 @@ class List(Request):
         super().__init__(body, table)
 
     def perform_query(self) -> bool:
-        def generate_query():
-            #change body (dictionary) to a particurlar SQL string here
-            pass
-        #return perform_query(SQL_query)
+        query = generate_select_query('deadline', self.table) #DATE fixed for now, change that to make code more modular
+        print(query)
+        return read_from_db(query, list(self.body.values()))
 
 
 class Update(Request):
@@ -49,5 +48,3 @@ class Update(Request):
             #change body (dictionary) to a particurlar SQL string here
             pass
         #return perform_query(SQL_query)self.body = body
-
-
