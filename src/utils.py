@@ -5,6 +5,8 @@ from settings import HOST, USER, PASSWORD, DB
 from argparse import ArgumentTypeError
 from datetime import datetime
 
+from hashlib import md5
+
 config = {
     'host': HOST,
     'user': USER,
@@ -75,11 +77,16 @@ def valid_datetime(s: str):
         raise ArgumentTypeError(msg)
 
 
+#It is known that MD5 is broken for cryptograhic purposes but for one user's messages should be fine
 def generate_hash(string: str) -> str:
-    return '1'
+    return md5(string.encode('utf-8')).hexdigest()
 
 
-def generate_insert_query(dictionary: dict):
+def generate_insert_query(dictionary: dict) -> str:
     placeholders = ', '.join(['%s'] * len(dictionary))
     columns = ', '.join(dictionary.keys())
     return "INSERT INTO %s ( %s ) VALUES ( %s )" % ('tasks', columns, placeholders)
+
+
+def generate_remove_query():
+    return '1'
