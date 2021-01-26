@@ -55,15 +55,14 @@ class MockDB(TestCase):
             else:
                 print(err.msg)
 
-        insert_data_query = """INSERT INTO 'test_table' ('id', 'task', 'description', 'deadline') VALUES
-                                    '100', 's', None, None,
-                                    '200', 's', 's', None,
-                                    '300', 's', 's', '20-10-2021-10:10:00"""
-
+        insert_data_query = """INSERT INTO tasks VALUES                               
+                                    ('100', 's', Null, Null),
+                                    ('200', 's', 's', Null),
+                                    ('300', 's', 's', Null)"""
 
         try:
             cursor.execute(insert_data_query)
-            cnx.commit()
+            connection.commit()
         except mysql.connector.Error as err:
             print("Data insertion to test_table failed \n" + err.msg)
 

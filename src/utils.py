@@ -20,8 +20,8 @@ def write_to_db(query: str, values) -> bool:
     connection = get_db_connection(config)
     cursor = get_cursor(connection)
 
-    #print("affected rows = {}".format(cursor.rowcount)) - use this to check
-    print(query)
+    #print("affected rows = {}".format(cursor.rowcount)) - use this to check 'ACKNOWLEDGMENT'
+
     try:
         cursor.execute(query, values)
 
@@ -81,7 +81,7 @@ def generate_hash(string: str) -> str:
     return md5(string.encode('utf-8')).hexdigest()
 
 
-def generate_insert_query(dictionary: dict):
+def generate_insert_query(dictionary: dict, table):
     placeholders = ', '.join(['%s'] * len(dictionary))
     columns = ', '.join(dictionary.keys())
-    return "INSERT INTO %s ( %s ) VALUES ( %s )" % ('tasks', columns, placeholders)
+    return "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
