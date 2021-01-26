@@ -67,7 +67,25 @@ class Parser():
         return list_parser
 
     def generate_update_parser(self) -> ArgumentParser:
-        pass
+        update_parser = self.subparser.add_parser('update')
+
+        update_parser.add_argument('--task',
+                                   metavar='title',
+                                   default=None,
+                                   type=str)
+        update_parser.add_argument('--deadline',
+                                   metavar='deadline',
+                                   default=None,
+                                   type=valid_date)
+        update_parser.add_argument('--description',
+                                   metavar='description',
+                                   default=None)
+        update_parser.add_argument('--id',
+                                   metavar='id',
+                                   type=str,
+                                   required=True)
+
+        return update_parser
 
     # PARSING METHODS WHICH EMPLOY THE GENERATORS AND PARSE ARGS
 
@@ -80,7 +98,8 @@ class Parser():
         return vars(remove_parser.parse_args(args))
 
     def parse_update_args(self, args: list) -> dict:
-        pass
+        update_parser = self.generate_update_parser()
+        return vars(update_parser.parse_args(args))
 
     def parse_list_args(self, args: list) -> dict:
         list_parser = self.generate_list_parser()
@@ -91,9 +110,7 @@ class Parser():
     def parse_args(self, sys_args: list, table) -> Request:
         command = sys_args[0]
         options = sys_args[1:]
-
         args = self.dict_generators[command](options)
-        print(options)
 
         request_constructor = globals()[command.capitalize()]
         request = request_constructor(args, table)

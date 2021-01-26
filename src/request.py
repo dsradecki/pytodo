@@ -1,5 +1,5 @@
 from src.utils import write_to_db, read_from_db, generate_hash, generate_insert_query, \
-                      generate_delete_query, generate_select_query
+                      generate_delete_query, generate_select_query, generate_update_query
 
 
 class Request():
@@ -44,7 +44,5 @@ class Update(Request):
         super().__init__(body, table)
 
     def perform_query(self) -> bool:
-        def generate_query():
-            #change body (dictionary) to a particurlar SQL string here
-            pass
-        #return perform_query(SQL_query)self.body = body
+        query = generate_update_query(self.body, self.table)
+        return write_to_db(query, list(self.body.values()))

@@ -118,3 +118,10 @@ def generate_delete_query(var: str, table: str) -> str:
 def generate_select_query(var: str, table: str) -> str:
     placeholder = '%s'
     return "SELECT * FROM %s WHERE %s=DATE(%s)" % (table, var, placeholder)
+
+#ID shouldnt be harcoded this way, refactor this
+def generate_update_query(dictionary: dict, table: str) -> str:
+    sql = 'UPDATE ' + table + ' SET {}'.format(', '.join('{}=%s'.format(k) for k in dictionary if k != 'id')) \
+          + ' WHERE id=%s'
+    print(sql)
+    return sql
