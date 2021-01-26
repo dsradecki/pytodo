@@ -83,3 +83,7 @@ def generate_insert_query(dictionary: dict):
     placeholders = ', '.join(['%s'] * len(dictionary))
     columns = ', '.join(dictionary.keys())
     return "INSERT INTO %s ( %s ) VALUES ( %s )" % ('tasks', columns, placeholders)
+
+
+def generate_remove_query():
+    return '1'
