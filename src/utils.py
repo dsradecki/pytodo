@@ -81,15 +81,11 @@ def generate_hash(string: str) -> str:
     return md5(string.encode('utf-8')).hexdigest()
 
 
-def generate_insert_query(dictionary: dict, table):
+def generate_insert_query(dictionary: dict, table: str):
     placeholders = ', '.join(['%s'] * len(dictionary))
     columns = ', '.join(dictionary.keys())
-
     return "INSERT INTO %s ( %s ) VALUES ( %s )" % (table, columns, placeholders)
 
 
-
-
-def generate_remove_query():
-    return '1'
-
+def generate_delete_query(var: str, table: str):
+    return "DELETE FROM %s WHERE %s=%s" % (table, var)
